@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const mongooes = require('mongoose');
 const validator = require('validator');
-
+const jwt = require('jsonwebtoken');
 const userSchema = new mongooes.Schema({
   name: {
     type: String,
@@ -49,4 +49,11 @@ userSchema.pre('save', async function (next) {
   }
   this.password = await bcrypt.hash(this.password, 10);
 });
+
+//Return JWT token
+userSchema.methods.getJwtToken = function () {
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_TIME,
+  });
+};
 module.exports = mongooes.model('User', userSchema);
