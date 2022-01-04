@@ -1,6 +1,6 @@
-const mongooes = require('mongoose');
+const mongoose = require('mongoose');
 
-const productSchema = new mongooes.Schema(
+const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -85,6 +85,11 @@ const productSchema = new mongooes.Schema(
         },
       },
     ],
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User',
+      required: true,
+    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -95,4 +100,4 @@ const productSchema = new mongooes.Schema(
   }
 );
 
-module.exports = mongooes.model('Product', productSchema);
+module.exports = mongoose.model('Product', productSchema);
