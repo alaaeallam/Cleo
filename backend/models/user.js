@@ -63,17 +63,17 @@ userSchema.methods.getJwtToken = function () {
   });
 };
 
-// Genrate password rest token
+// Genrate password reset token
 userSchema.methods.getResetPasswordToken = function () {
   //Genrate token
-  const restToken = crypto.randomBytes(20).toString('hex');
-  // Hash and set to rest passwordToken
+  const resetToken = crypto.randomBytes(20).toString('hex');
+  // Hash and set to reset passwordToken
   this.resetPasswordToken = crypto
     .createHash('sha256')
-    .update(restToken)
+    .update(resetToken)
     .digest('hex');
   // set token expire time
   this.resetPasswordExpire = Date.now() + 30 * 60 * 100;
-  return restToken;
+  return resetToken;
 };
 module.exports = mongooes.model('User', userSchema);
