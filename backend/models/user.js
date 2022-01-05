@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const mongooes = require('mongoose');
 const validator = require('validator');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
 const userSchema = new mongooes.Schema({
   name: {
     type: String,
@@ -60,5 +61,19 @@ userSchema.methods.getJwtToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_TIME,
   });
+};
+
+// Genrate password rest token
+userSchema.methods.getResetPasswordToken = function () {
+  //Genrate token
+  const restToken = crypto.randomBytes(20).toString('hex');
+  // Hash and set to rest passwordToken
+  this.resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(restToken)
+    .digest('hex');
+  // set token expire time
+  this.resetPasswordExpire = Date.now() + 30 * 60 * 100;
+  return restToken;
 };
 module.exports = mongooes.model('User', userSchema);
