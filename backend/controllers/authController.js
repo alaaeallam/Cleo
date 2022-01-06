@@ -6,6 +6,7 @@ const sendEmail = require('../utils/sendEmail');
 
 const crypto = require('crypto');
 const { send } = require('process');
+const user = require('../models/user');
 //Register a user => /api/v1/register
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -129,6 +130,25 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   user.password = req.body.password;
   await user.save();
   sendToken(user, 200, res);
+});
+
+// update user profile =? /api/v1/me/update
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newUserDate = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+  //Update avatar TODO
+
+  const user = await User.findByIdAndUpdate(req.user.id, newUserDate, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+  res.status(200).json({
+    success: true,
+    message: 'great ',
+  });
 });
 //Logout user /api/v1/logout
 exports.logout = catchAsyncErrors(async (req, res, next) => {
