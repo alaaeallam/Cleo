@@ -125,7 +125,7 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   //Check previous password
   const isMatched = await user.comparePassword(req.body.oldPassword);
   if (!isMatched) {
-    return next(new ErrorHandler('OOld password is incorrect', 400));
+    return next(new ErrorHandler('Old password is incorrect', 400));
   }
   user.password = req.body.password;
   await user.save();
@@ -160,5 +160,29 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
     message: 'Logged out',
+  });
+});
+
+//Admin routers
+
+//Get All users => /api/v1/admin/users
+exports.allUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+  res.status(200).json({
+    success: true,
+    count: users.length,
+    users,
+  });
+});
+//Get user details => /api/v1/admin/users/:id
+
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(new ErrorHandler(`User not found with id:${req.params.id}`));
+  }
+  res.status(200).json({
+    success: true,
+    user,
   });
 });
