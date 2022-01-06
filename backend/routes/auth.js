@@ -11,6 +11,8 @@ const {
   updateProfile,
   allUsers,
   getUserDetails,
+  updateUser,
+  deleteUser,
   logout,
 } = require('../controllers/authController');
 
@@ -29,5 +31,8 @@ router
   .get(isAuthenticatedUser, authorizeRoles('admin'), allUsers);
 router
   .route('/admin/users/:id')
-  .get(isAuthenticatedUser, authorizeRoles('admin'), getUserDetails);
+  .get(isAuthenticatedUser, authorizeRoles('admin'), getUserDetails)
+  .put(isAuthenticatedUser, authorizeRoles('admin'), updateUser)
+  .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteUser);
+
 module.exports = router;
