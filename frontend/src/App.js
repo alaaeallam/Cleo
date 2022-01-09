@@ -1,9 +1,11 @@
-import './App.css';
-
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
 function App() {
   return (
     <div>
-      <h1>Cleo</h1>
+      <Header />
+
+      <Footer />
     </div>
   );
 }
