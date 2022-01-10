@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { Fragment } from 'react';
-
+import MetaData from './layout/MetaData';
 const Home = () => {
   return (
     <Fragment>
+      <MetaData title={'Buy best products online'} />
       <h1 id="products_heading">Latest Products</h1>
       <section id="products" className="container mt-5">
         <div className="row">
@@ -22,7 +25,7 @@ const Home = () => {
                   </div>
                   <span id="no_of_reviews">(5 Reviews)</span>
                 </div>
-                <p className="card-text">$45.67</p>
+                <p className="card-text">LE 45.67</p>
                 <a href="#" id="view_btn" className="btn btn-block">
                   View Details
                 </a>
