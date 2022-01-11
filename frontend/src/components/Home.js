@@ -4,7 +4,6 @@ import React, { Fragment, useEffect } from 'react';
 import MetaData from './layout/MetaData';
 import { getProducts } from '../actions/productActions';
 import { useDispatch, useSelector } from 'react-redux';
-import product from '../../../backend/models/product';
 
 const Home = () => {
   const dispatch = useDispatch();
