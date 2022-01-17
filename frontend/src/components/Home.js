@@ -77,7 +77,7 @@ const Home = () => {
                         max={1000}
                         defaultValue={(1, 1000)}
                         tipFormator={(value) => `LE${value}`}
-                        tipProops={{
+                        tipProps={{
                           placement: 'top',
                           visible: true,
                         }}
