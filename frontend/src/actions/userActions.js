@@ -37,17 +37,20 @@ export const login = (email, password) => async (dispatch) => {
     });
   }
 };
+
+//Register
 export const register = (userData) => async (dispatch) => {
   try {
-    dispatch({
-      type: REGISTER_USER_REQUEST,
-    });
+    dispatch({ type: REGISTER_USER_REQUEST });
+
     const config = {
       headers: {
-        'content-Type': 'multipart/form-data',
+        'Content-Type': 'multipart/form-data',
       },
     };
+
     const { data } = await axios.post('/api/v1/register', userData, config);
+
     dispatch({
       type: REGISTER_USER_SUCCESS,
       payload: data.user,
@@ -59,7 +62,6 @@ export const register = (userData) => async (dispatch) => {
     });
   }
 };
-//Register
 
 // Clear Errors
 
