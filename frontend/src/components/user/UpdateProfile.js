@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import MetaData from '../layout/MetaData';
 import {
   updateProfile,
-  register,
   loadUser,
   clearErrors,
 } from '../../actions/userActions';
