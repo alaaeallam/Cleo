@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import Home from './components/Home';
+import ProtectedRoute from './components/route/ProtectedRoute';
 import ProductDetails from './components/product/ProductDetails';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
@@ -25,7 +26,14 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/me" element={<Profile />} />
+            <Route
+              path="/me"
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </div>
         <Footer />
