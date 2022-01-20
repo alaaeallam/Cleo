@@ -40,7 +40,7 @@ const Profile = () => {
 
               <h4>Email Address</h4>
               <p>{user.email}</p>
-              <h4>Joined oon</h4>
+              <h4>Joined on</h4>
               <p>{String(user.createdAt).substring(0, 10)}</p>
               {user.role !== 'admin' && (
                 <Link

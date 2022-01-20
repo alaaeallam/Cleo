@@ -12,6 +12,7 @@ import Profile from './components/user/Profile';
 import { loadUser } from './actions/userActions';
 import UpdateProfile from './components/user/UpdateProfile';
 import UpdatePassword from './components/user/UpdatePassword';
+import ForgotPassword from './components/user/ForgotPassword';
 import store from './Store';
 function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/password/forgot" element={<ForgotPassword />} exact />
             <Route
               path="/me"
               element={
@@ -43,6 +45,7 @@ function App() {
                   <UpdateProfile />
                 </ProtectedRoute>
               }
+              exact
             />
             <Route
               path="/password/update"

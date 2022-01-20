@@ -4,11 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MetaData from '../layout/MetaData';
-import {
-  updatePassword,
-  loadUser,
-  clearErrors,
-} from '../../actions/userActions';
+import { updatePassword, clearErrors } from '../../actions/userActions';
 import { UPDATE_PASSWORD_RESET } from '../../constants/userConstants';
 const UpdatePassword = () => {
   const [oldPassword, setOldPassword] = useState('');
