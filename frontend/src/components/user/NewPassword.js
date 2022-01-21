@@ -36,7 +36,7 @@ const NewPassword = (match) => {
     formData.set('password', password);
     formData.set('confirmPassword', confirmPassword);
 
-    dispatch(NewPassword(match.params.token, formData));
+    dispatch(resetPassword(match.params.token, formData));
   };
 
   return (
