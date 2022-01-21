@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useAlert } from 'react-alert';
 import { useParams } from 'react-router-dom';
 import { getProductsDetails, clearErrors } from '../../actions/productActions';
+import { addItemToCart } from '../../actions/cartActions';
 const ProductDetails = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ const ProductDetails = () => {
       dispatch(clearErrors());
     }
   }, [dispatch, alert, error, params.id]);
+  const addToCart = () => {
+    dispatch(addItemToCart(params.id, quantity));
+    alert.success('Item Added to Cart');
+  };
   const increaseQty = () => {
     const count = document.querySelector('.count');
     if (count.valueAsNumber >= product.stock) return;
@@ -93,6 +98,8 @@ const ProductDetails = () => {
                 type="button"
                 id="cart_btn"
                 className="btn btn-primary d-inline ml-4"
+                disabled={product.stock === 0}
+                onClick={addToCart}
               >
                 Add to Cart
               </button>
