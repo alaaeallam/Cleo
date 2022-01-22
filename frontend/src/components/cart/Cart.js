@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import MetaData from '../layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addItemToCart, removeItemFromCart } from '../../actions/cartActions';
 
 const Cart = () => {
   let navigate = useNavigate();
-  const params = useParams();
+
   const dispatch = useDispatch();
 
   const { cartItems } = useSelector((state) => state.cart);
@@ -30,7 +30,7 @@ const Cart = () => {
     dispatch(addItemToCart(id, newQty));
   };
   const checkoutHandler = () => {
-    navigate('/login?redirect=shipping');
+    navigate('/login?redirect=/shipping');
   };
   return (
     <Fragment>

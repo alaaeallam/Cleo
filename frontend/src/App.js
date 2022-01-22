@@ -15,6 +15,7 @@ import UpdateProfile from './components/user/UpdateProfile';
 import UpdatePassword from './components/user/UpdatePassword';
 import ForgotPassword from './components/user/ForgotPassword';
 import NewPassword from './components/user/NewPassword';
+import Shipping from './components/cart/Shipping';
 import store from './Store';
 function App() {
   useEffect(() => {
@@ -54,6 +55,14 @@ function App() {
                 </ProtectedRoute>
               }
               exact
+            />
+            <Route
+              path="/shipping"
+              element={
+                <ProtectedRoute>
+                  <Shipping />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/password/update"
